@@ -1,0 +1,24 @@
+write-kubeconfig-mode: "0644"
+
+cluster-cidr: 10.42.0.0/16
+service-cidr: 10.43.0.0/16
+
+disable:
+  - traefik
+
+kubelet-arg:
+  - container-log-max-files=2
+  - container-log-max-size=1Mi
+  - config=/etc/rancher/k3s/kubelet-config.yaml
+
+flannel-backend: wireguard-native
+node-ip: "{{ private_ip }}"
+node-external-ip: "{{ public_ip }}"
+
+# uncomment below if multi-cloud cluster
+advertise-address: "{{ public_ip }}"
+flannel-external-ip: true
+# uncomment above if multi-cloud cluster
+
+kube-controller-manager-arg:
+  - node-cidr-mask-size-ipv4=22

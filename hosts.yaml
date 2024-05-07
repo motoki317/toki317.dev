@@ -1,0 +1,7 @@
+master:
+  hosts:
+    moto-a1-3:
+
+workers:
+  hosts:
+    g001:

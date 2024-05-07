@@ -1,0 +1,15 @@
+ansible_host: o001.toki317.dev
+ansible_user: ubuntu
+#hostname: moto-a1-3
+
+#public_allowed_tcp_ports:
+#  - 22 # SSH
+#  - 80 # HTTP
+#  - 443 # HTTPS (HTTP/2)
+#  - 6443 # k8s API server
+#
+#public_allowed_udp_ports:
+#  - 443 # HTTP/3
+
+public_ip: 138.2.50.202
+private_ip: 10.0.0.128

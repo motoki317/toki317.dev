@@ -1,0 +1,40 @@
+name: Run playbook
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          playbook: root-play.yaml
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          # Optional, SSH known hosts file content
+          known_hosts: |
+            # o001.toki317.dev:22 SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.6
+            o001.toki317.dev ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC9FlOty+vNw1EGS1Z6FR41ehvkwuMp08mAIuAC5Q+K38kyy2r1q1YCBQSkdrdYaHiuSPCYBMeGw87nIGxI1aOxKl5gL23GBIqWs48hu3lWsNf/a+cqs6NYJHQK/Nrsm4cefjhVLYRK7QJThef50SyvgQRZ+EMkbupM8vG3+/uGcuC5thIrta0LyDG5UYkpCqDH/QuBA1f0y25GpGHenRlVWMjiyJuSkGZdsgwSvGi1NgTDlDeCPz8Ks5ogO47pBYxkTZNQ/vSppzud4G3j2v1EejWP0A/TtPghAWDTjX3WlAvW2Z8vtUcivb8+eyaT1W13Bfrk/vsZuLMv5BrfZVRXj3Wg5a/4xBK5QkCszX3LbMoadpchMQv288YpRHXIYQnjYxOAT3UPliguTnq0H2uyrF1W+GrxgjfbvF94S/Czq851uE6QAC+OWvBcpyjAiaVobclr4eocrksRnYaBUGmaA7OL4WV3D5WGg2+gZ/FVtEc6V1J/0JlfLfTKFzSRsVM=
+            # o001.toki317.dev:22 SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.6
+            o001.toki317.dev ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBAsLCWtM4gmDZss5paExdWsOp2lxCqC+rHsYOI6agYb1s72A3dEbK7nk/1mB9+COIacjtusAXhEHta/Q7gDkVpM=
+            # o001.toki317.dev:22 SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.6
+            o001.toki317.dev ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGF+jG+DjAkpZ45QAx3NT/xqL94sDO4mXxpDMn/0ugDO
+            # o001.toki317.dev:22 SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.6
+            # o001.toki317.dev:22 SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.6
+            
+            # g001.toki317.dev:22 SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.6
+            g001.toki317.dev ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDg1PWWzDcXVGmOa3X5RVrgeD7AZUY0VmTfFz8UUAnK0VutuBoxXO5gxWK6qQEQzI3fnASuwGDg01qeeN0JRG+p3QVc6aMgnJ8axDhwVoDqnTCy4jIS4E5VzFUB1R7k5YhIOY4ZgdJ5PMmhkePRTZfXtcG5sC5yu38DMwqQCKY4pHTq8Uq/DKFiBMuWOJFLUhrW/Z4lgE4SF29lGLAZp0ZakdfERsrFq8rGAeXxxea+R2swl92qcbmek7BsBC8jlg+1siGJeA2re2HKtxYDUV90PGf4zKNwOoNYzZOGGTBQoD4RfVSZl91ehrx0M5fcY4YNtT/HU1b5Ex86X9bcU9oMcsBHP7Q3rCSvKXW1/+/R98fgA3B0zMn6GErk9rxeP5BKtgecbYQBPUyE5GmNTMU2f40z1ph6fGBcR5dBuJnwiDefbl/mJpWxbWjVKj4DT0O2grNFMAbsOu4WrkvYjSycNPLddus0/yMM85xswAGaulLQ79P//ti/bwSf/AWXgxs=
+            # g001.toki317.dev:22 SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.6
+            g001.toki317.dev ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBDywYVrqbcocsV1zxJUXhy92NfTROW2Kzi2aooxaOPJZ6zDHe/T3Ae5cd4hNMewSxIvJM50Xfnu/aaCtn+jfuIA=
+            # g001.toki317.dev:22 SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.6
+            g001.toki317.dev ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHG1PujKCnWQhUZ97xpiNhEi0XS5wmEy0+dI0poN9VNy
+            # g001.toki317.dev:22 SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.6
+            # g001.toki317.dev:22 SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.6
+          vault_password: ${{ secrets.VAULT_PASSWORD }}
+          options: |
+            --inventory hosts.yaml
+            --verbose
