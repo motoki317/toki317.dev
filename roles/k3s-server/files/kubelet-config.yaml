@@ -4,5 +4,5 @@ kind: KubeletConfiguration
 maxPods: 1000
 
 failSwapOn: false
-featureGates:
-  NodeSwap: true
+memorySwap:
+  swapBehavior: LimitedSwap
