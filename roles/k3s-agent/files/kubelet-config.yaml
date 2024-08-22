@@ -6,3 +6,9 @@ maxPods: 1000
 failSwapOn: false
 memorySwap:
   swapBehavior: LimitedSwap
+
+evictionHard:
+  memory.available: "100Mi"
+  nodefs.available: "5Gi"
+  nodefs.inodeFree: "5%"
+  imagefs.available: "5Gi"
