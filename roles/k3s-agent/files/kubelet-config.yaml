@@ -10,5 +10,5 @@ memorySwap:
 evictionHard:
   memory.available: "100Mi"
   nodefs.available: "5Gi"
-  nodefs.inodeFree: "5%"
+  nodefs.inodesFree: "5%"
   imagefs.available: "5Gi"
