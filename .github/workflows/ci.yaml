@@ -4,7 +4,7 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
 
 permissions:
@@ -15,10 +15,8 @@ permissions:
 
 jobs:
   ci:
-    uses: gmo-media/tofu-actions/.github/workflows/quickstart-ci.yaml@v3
+    uses: gmo-media/tofu-actions/.github/workflows/quickstart-ci.yaml@v4
     with:
       auth-mode: gcp-oidc
       gcp-project: hobby-256508
       gcp-idp: projects/905974313870/locations/global/workloadIdentityPools/github-actions-pool/providers/github-provider
-    secrets:
-      drift-notify-webhook: ${{ secrets.DRIFT_NOTIFY_WEBHOOK }}
