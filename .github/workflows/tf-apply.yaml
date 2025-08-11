@@ -1,0 +1,34 @@
+# Apply manually
+name: Apply
+
+on:
+  workflow_dispatch:
+    inputs:
+      run-id:
+        description: Actions run ID where plan was generated
+        type: string
+        required: true
+
+permissions:
+  contents: read
+  actions: read
+  id-token: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/auth@v2
+        with:
+          project_id: hobby-256508
+          workload_identity_provider: projects/905974313870/locations/global/workloadIdentityPools/github-actions-pool/providers/github-provider
+
+      - uses: actions/checkout@v4
+      - uses: opentofu/setup-opentofu@000eeb8522f0572907c393e8151076c205fdba1b # v1.0.6
+        with:
+          tofu_version_file: .opentofu-version
+
+      - uses: gmo-media/tofu-actions/apply@v2
+        with:
+          dir: tf
+          run-id: ${{ inputs.run-id }}
