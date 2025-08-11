@@ -39,6 +39,12 @@ resource "google_project_iam_member" "github_actions_storage_admin" {
   member  = "serviceAccount:${google_service_account.github_actions.email}"
 }
 
+resource "google_storage_bucket_iam_member" "github_actions_tfstate_access" {
+  bucket = "toki317-dev-tfstate"
+  role   = "roles/storage.objectAdmin"
+  member = "serviceAccount:${google_service_account.github_actions.email}"
+}
+
 resource "google_service_account_iam_binding" "github_actions_workload_identity" {
   service_account_id = google_service_account.github_actions.name
   role               = "roles/iam.workloadIdentityUser"
