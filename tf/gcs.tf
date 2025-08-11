@@ -16,3 +16,32 @@ resource "google_storage_bucket" "toki317-dev-tfstate" {
     }
   }
 }
+
+resource "google_storage_bucket" "toki317-backup" {
+  name          = "toki317-backup"
+  location      = "us-central1"
+  storage_class = "STANDARD"
+
+  versioning {
+    enabled = true
+  }
+
+  lifecycle_rule {
+    action {
+      type = "Delete"
+    }
+    condition {
+      with_state         = "ARCHIVED"
+      num_newer_versions = 5
+    }
+  }
+
+  lifecycle_rule {
+    action {
+      type = "Delete"
+    }
+    condition {
+      days_since_noncurrent_time = 7
+    }
+  }
+}
