@@ -7,6 +7,8 @@ resource "google_storage_bucket" "toki317-dev-tfstate" {
     enabled = true
   }
 
+  uniform_bucket_level_access = true
+
   lifecycle_rule {
     action {
       type = "Delete"
