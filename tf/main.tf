@@ -1,5 +1,9 @@
+locals {
+  project-id = "hobby-256508"
+}
+
 provider "google" {
-  project = "hobby-256508"
+  project = local.project-id
   region  = "us-west1"
   zone    = "us-west1-a"
 }
