@@ -14,7 +14,10 @@ resource "google_storage_bucket" "toki317-dev-tfstate" {
       type = "Delete"
     }
     condition {
-      num_newer_versions = 5
+      matches_prefix        = []
+      matches_storage_class = []
+      matches_suffix        = []
+      num_newer_versions    = 5
     }
   }
 }
