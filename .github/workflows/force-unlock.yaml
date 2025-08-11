@@ -1,0 +1,28 @@
+# Manually force-unlock state
+name: Force unlock
+run-name: Force unlock (${{ inputs.dir }})
+
+on:
+  workflow_dispatch:
+    inputs:
+      dir:
+        description: Directory to run in
+        type: choice
+        required: true
+        default: tf
+        options:
+          - tf
+      lock-id:
+        description: Lock ID (see error message of OpenTofu)
+        type: string
+        required: true
+
+jobs:
+  force-unlock:
+    uses: gmo-media/tofu-actions/.github/workflows/quickstart-force-unlock.yaml@v2
+    with:
+      auth-mode: gcp-oidc
+      gcp-project: hobby-256508
+      gcp-idp: projects/905974313870/locations/global/workloadIdentityPools/github-actions-pool/providers/github-provider
+      dir: ${{ inputs.dir }}
+      lock-id: ${{ inputs.lock-id }}

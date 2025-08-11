@@ -1,0 +1,16 @@
+# Run drift checks manually or on cron
+name: Drift Check
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  drift-check:
+    uses: gmo-media/tofu-actions/.github/workflows/quickstart-drift-check.yaml@v2
+    with:
+      auth-mode: gcp-oidc
+      gcp-project: hobby-256508
+      gcp-idp: projects/905974313870/locations/global/workloadIdentityPools/github-actions-pool/providers/github-provider
+      drift-notify-webhook: "https://hooks.slack.com/..."

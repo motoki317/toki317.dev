@@ -1,0 +1,28 @@
+# Apply manually
+name: Apply
+run-name: Apply (${{ inputs.dir }})
+
+on:
+  workflow_dispatch:
+    inputs:
+      dir:
+        description: Directory to run in
+        type: choice
+        required: true
+        default: tf
+        options:
+          - tf
+      run-id:
+        description: Actions run ID where plan was generated
+        type: string
+        required: true
+
+jobs:
+  apply:
+    uses: gmo-media/tofu-actions/.github/workflows/quickstart-apply.yaml@v2
+    with:
+      auth-mode: gcp-oidc
+      gcp-project: hobby-256508
+      gcp-idp: projects/905974313870/locations/global/workloadIdentityPools/github-actions-pool/providers/github-provider
+      dir: ${{ inputs.dir }}
+      run-id: ${{ inputs.run-id }}
