@@ -14,9 +14,10 @@ permissions:
 
 jobs:
   drift-check:
-    uses: gmo-media/tofu-actions/.github/workflows/quickstart-drift-check.yaml@v2
+    uses: gmo-media/tofu-actions/.github/workflows/quickstart-drift-check.yaml@v3
     with:
       auth-mode: gcp-oidc
       gcp-project: hobby-256508
       gcp-idp: projects/905974313870/locations/global/workloadIdentityPools/github-actions-pool/providers/github-provider
+    secrets:
       drift-notify-webhook: ${{ secrets.DRIFT_NOTIFY_WEBHOOK }}

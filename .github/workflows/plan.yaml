@@ -19,7 +19,7 @@ permissions:
 
 jobs:
   plan:
-    uses: gmo-media/tofu-actions/.github/workflows/quickstart-plan.yaml@v2
+    uses: gmo-media/tofu-actions/.github/workflows/quickstart-plan.yaml@v3
     with:
       auth-mode: gcp-oidc
       gcp-project: hobby-256508
