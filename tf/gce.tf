@@ -5,8 +5,6 @@ resource "google_compute_instance" "g001" {
 
   key_revocation_action_type = "NONE" # Needed in order for plan to result in no diff, for some reason
 
-  tags = ["http-server", "https-server"]
-
   boot_disk {
     source = "g001"
   }
