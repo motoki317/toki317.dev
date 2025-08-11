@@ -6,6 +6,6 @@ provider "google" {
 
 terraform {
   backend "gcs" {
-    bucket  = "toki317-dev-tfstate"
+    bucket = "toki317-dev-tfstate"
   }
 }
