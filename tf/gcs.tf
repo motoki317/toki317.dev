@@ -43,7 +43,7 @@ resource "google_storage_bucket" "toki317-backup" {
       type = "Delete"
     }
     condition {
-      days_since_noncurrent_time = 7
+      days_since_noncurrent_time = 14
     }
   }
 }
