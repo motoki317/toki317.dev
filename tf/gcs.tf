@@ -34,7 +34,7 @@ resource "google_storage_bucket" "toki317-backup" {
     }
     condition {
       with_state         = "ARCHIVED"
-      num_newer_versions = 5
+      num_newer_versions = 14
     }
   }
 
