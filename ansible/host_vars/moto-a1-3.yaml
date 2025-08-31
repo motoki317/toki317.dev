@@ -11,5 +11,5 @@ ansible_user: ubuntu
 #public_allowed_udp_ports:
 #  - 443 # HTTP/3
 
-public_ip: 100.81.52.43
-private_ip: 100.81.52.43
+public_ip: 138.2.50.202
+private_ip: 10.0.0.128
