@@ -12,4 +12,6 @@ ansible_user: moto
 #  - 443 # HTTP/3
 
 public_ip: 35.212.136.248
-private_ip: 10.138.0.7
+# private_ip: 10.138.0.7
+# Not in the same network, so just specify the global IP address here to make prometheus "node" discovery work.
+private_ip: 35.212.136.248
