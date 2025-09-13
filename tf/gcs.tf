@@ -34,7 +34,7 @@ resource "google_storage_bucket" "toki317-backup" {
     }
     condition {
       with_state         = "ARCHIVED"
-      num_newer_versions = 14
+      num_newer_versions = 15
     }
   }
 
@@ -43,7 +43,7 @@ resource "google_storage_bucket" "toki317-backup" {
       type = "Delete"
     }
     condition {
-      days_since_noncurrent_time = 14
+      days_since_noncurrent_time = 15
     }
   }
 }
