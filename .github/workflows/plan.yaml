@@ -21,6 +21,7 @@ jobs:
   plan:
     uses: gmo-media/tofu-actions/.github/workflows/quickstart-plan.yaml@v4
     with:
+      tf-binary: terraform
       auth-mode: gcp-oidc
       gcp-project: hobby-256508
       gcp-idp: projects/905974313870/locations/global/workloadIdentityPools/github-actions-pool/providers/github-provider
