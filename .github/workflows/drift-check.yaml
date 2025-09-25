@@ -14,12 +14,7 @@ permissions:
 
 jobs:
   drift-check:
-    uses: gmo-media/tofu-actions/.github/workflows/quickstart-drift-check.yaml@v4
-    with:
-      tf-binary: terraform
-      auth-mode: gcp-oidc
-      gcp-project: hobby-256508
-      gcp-idp: projects/905974313870/locations/global/workloadIdentityPools/github-actions-pool/providers/github-provider
+    uses: gmo-media/tofu-actions/.github/workflows/quickstart-drift-check.yaml@v5
     secrets:
       github-token: ${{ secrets.PR_CREATE_PAT }}
       drift-notify-webhook: ${{ secrets.DRIFT_NOTIFY_WEBHOOK }}
