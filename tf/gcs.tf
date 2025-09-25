@@ -14,7 +14,7 @@ resource "google_storage_bucket" "toki317-dev-tfstate" {
       type = "Delete"
     }
     condition {
-      num_newer_versions = 10
+      num_newer_versions = 7
     }
   }
 }
