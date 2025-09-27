@@ -4,4 +4,3 @@ master:
 
 workers:
   hosts:
-    g001:
