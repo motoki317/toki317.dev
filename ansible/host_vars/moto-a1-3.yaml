@@ -13,3 +13,4 @@ ansible_user: ubuntu
 
 public_ip: 138.2.50.202
 private_ip: 10.0.0.128
+ipv6: 2603:c023:e:6f00:0:eba5:dfa7:81b7

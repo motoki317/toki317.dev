@@ -1,7 +1,7 @@
 write-kubeconfig-mode: "0644"
 
-cluster-cidr: 10.42.0.0/16
-service-cidr: 10.43.0.0/16
+cluster-cidr: 10.42.0.0/16,2001:db8:42::/56
+service-cidr: 10.43.0.0/16,2001:db8:43::/56
 
 disable:
   - traefik
@@ -12,12 +12,12 @@ kubelet-arg:
   - config=/etc/rancher/k3s/kubelet-config.yaml
 
 flannel-backend: wireguard-native
-node-ip: "{{ private_ip }}"
-node-external-ip: "{{ public_ip }}"
+node-ip: "{{ private_ip }},{{ ipv6 }}"
+node-external-ip: "{{ public_ip }},{{ ipv6 }}"
 
 # uncomment below if multi-cloud cluster
-advertise-address: "{{ public_ip }}"
-flannel-external-ip: true
+# advertise-address: "{{ public_ip }}, {{ ipv6 }}"
+# flannel-external-ip: true
 # uncomment above if multi-cloud cluster
 
 kube-controller-manager-arg:

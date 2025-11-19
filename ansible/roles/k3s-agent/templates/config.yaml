@@ -3,5 +3,5 @@ kubelet-arg:
   - container-log-max-size=1Mi
   - config=/etc/rancher/k3s/kubelet-config.yaml
 
-node-ip: "{{ private_ip }}"
-node-external-ip: "{{ public_ip }}"
+node-ip: "{{ private_ip }},{{ ipv6 }}"
+node-external-ip: "{{ public_ip }},{{ ipv6 }}"
