@@ -1,6 +1,7 @@
 # S3 buckets and per-app IAM users for the OCI → AWS storage migration.
 # Each app runs on self-hosted k8s (not AWS), so it authenticates with a static
-# access key created here and copied into the app's SOPS-encrypted secret.
+# access key stored in the app's SOPS-encrypted secret. The key is created
+# out-of-band (see the note below), not by Terraform.
 
 locals {
   # Bucket names are globally unique; keep the `toki317-` prefix the state bucket uses.
@@ -60,17 +61,10 @@ resource "aws_iam_user_policy" "app" {
   })
 }
 
-resource "aws_iam_access_key" "app" {
-  for_each = local.app_buckets
-  user     = aws_iam_user.app[each.key].name
-}
-
-output "app_s3_access_key_ids" {
-  value = { for k, v in aws_iam_access_key.app : k => v.id }
-}
-
-# `terraform output -json app_s3_secret_access_keys` to copy into each app's SOPS secret.
-output "app_s3_secret_access_keys" {
-  value     = { for k, v in aws_iam_access_key.app : k => v.secret }
-  sensitive = true
-}
+# Access keys are deliberately NOT managed here. Terraform would persist the secret in
+# cleartext in the S3 state, which CI (public repos) can read. Create it out-of-band so the
+# secret goes straight from the CLI into SOPS, never touching state, CI, or the repo:
+#
+#   aws iam create-access-key --user-name s3-neoshowcase --profile toki317-admin
+#
+# Rotate the same way: create a new key, update the SOPS secret, then delete the old key.
