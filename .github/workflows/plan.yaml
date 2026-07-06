@@ -12,6 +12,7 @@ on:
         default: tf
         options:
           - tf
+          - tf/aws
 
 permissions:
   contents: read

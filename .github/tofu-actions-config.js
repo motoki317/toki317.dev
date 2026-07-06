@@ -7,8 +7,19 @@ const config = {
   }
 }
 
+const awsConfig = {
+  tfBinary: 'terraform',
+  auth: {
+    mode: 'aws-oidc',
+    awsRegion: 'ap-northeast-1',
+    awsPlanRole: 'arn:aws:iam::673433572095:role/tofu-plan',
+    awsApplyRole: 'arn:aws:iam::673433572095:role/tofu-apply',
+  }
+}
+
 export default {
   dirs: {
     'tf': config,
+    'tf/aws': awsConfig,
   }
 }

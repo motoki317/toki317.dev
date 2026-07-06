@@ -12,6 +12,7 @@ on:
         default: tf
         options:
           - tf
+          - tf/aws
       run-id:
         description: Actions run ID where plan was generated
         type: string
