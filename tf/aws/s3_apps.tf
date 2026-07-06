@@ -7,6 +7,8 @@ locals {
   # Bucket names are globally unique; keep the `toki317-` prefix the state bucket uses.
   app_buckets = {
     neoshowcase = "toki317-neoshowcase"
+    harbor      = "toki317-harbor"
+    traq        = "toki317-traq"
   }
 }
 
